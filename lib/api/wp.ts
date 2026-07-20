@@ -44,17 +44,6 @@ function buildQuery({ perPage = 10, page = 1, params = {} }: WPListOptions) {
   return qs.toString();
 }
 
-/** GET /wp-json/wp/v2/posts — list published posts. */
-// export async function fetchPosts(options: WPListOptions = {}): Promise<WPPost[]> {
-//   const res = await fetch(`${WP_API_BASE}/posts?${buildQuery(options)}`, {
-//     next: { revalidate: 900 },
-//   });
-//   if (!res.ok) {
-//     throw new Error(`WordPress posts API responded with status ${res.status}`);
-//   }
-//   return (await res.json()) as WPPost[];
-// }
-
 // lib/api/wp.ts
 export async function fetchPosts({ perPage = 10 }: { perPage?: number }) {
   const res = await fetch(
@@ -135,6 +124,21 @@ export async function fetchPostBySlug(
   const posts: WPPost[] = await res.json();
 
   return posts[0];
+}
+
+export async function fetchCategories(options: WPListOptions = {}): Promise<WPCategory[]> {
+  const res = await fetch(
+    `${WP_API_BASE}/categories?${buildQuery(options)}`,
+    {
+      next: { revalidate: 3600 },
+    }
+  );
+
+  if (!res.ok) {
+    throw new Error(`Failed to fetch categories (${res.status})`);
+  }
+
+  return res.json();
 }
 
 /** GET /wp-json/wp/v2/categories?slug=... — single category by slug (undefined if not found). */
