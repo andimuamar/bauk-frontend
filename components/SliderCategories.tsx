@@ -1,95 +1,12 @@
-"use client"
+import React from 'react'
+import { ArrowRight } from "lucide-react";
 
-import React, { useEffect, useState } from 'react';
-import { BookOpen, Wallet, Briefcase, ArrowRight } from 'lucide-react';
+export const SliderCategories = ({handlePrev, handleNext, currentIndex, maxIndex, setCurrentIndex, visibleCards, items} : {handlePrev:any, handleNext:any, currentIndex:any, maxIndex:number, setCurrentIndex:any, visibleCards:any, items:any}) => {
 
-const items = [
-  {
-    number: '01',
-    title: 'Biaya Studi',
-    desc: 'Rincian biaya kuliah, komponen pembayaran, dan informasi pendukung akademik.',
-    icon: BookOpen,
-  },
-  {
-    number: '02',
-    title: 'Panduan Keuangan Mahasiswa',
-    desc: 'Tips mengatur anggaran, strategi pembayaran, dan pengelolaan dana selama kuliah.',
-    icon: Wallet,
-  },
-  {
-    number: '03',
-    title: 'Unit Usaha',
-    desc: 'Informasi layanan dan peluang usaha yang relevan untuk kebutuhan mahasiswa.',
-    icon: Briefcase,
-  },
-  {
-    number: '04',
-    title: 'Beasiswa',
-    desc: 'Informasi program beasiswa, syarat pendaftaran, dan jadwal seleksi terbaru.',
-    icon: BookOpen,
-  },
-  {
-    number: '05',
-    title: 'Pembayaran Online',
-    desc: 'Panduan kanal pembayaran digital untuk memudahkan transaksi mahasiswa.',
-    icon: Wallet,
-  },
-  {
-    number: '06',
-    title: 'Layanan Pendukung',
-    desc: 'Akses informasi layanan tambahan yang mendukung kegiatan akademik dan usaha.',
-    icon: Briefcase,
-  },
-];
-
-export default function InformasiKeuanganMahasiswa() {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [visibleCards, setVisibleCards] = useState(3);
-  const maxIndex = Math.max(items.length - visibleCards, 0);
-
-  useEffect(() => {
-    const updateVisibleCards = () => {
-      if (window.innerWidth < 640) {
-        setVisibleCards(1);
-      } else if (window.innerWidth < 1024) {
-        setVisibleCards(2);
-      } else {
-        setVisibleCards(3);
-      }
-    };
-
-    updateVisibleCards();
-    window.addEventListener('resize', updateVisibleCards);
-
-    return () => window.removeEventListener('resize', updateVisibleCards);
-  }, []);
-
-  useEffect(() => {
-    setCurrentIndex((prev) => Math.min(prev, maxIndex));
-  }, [maxIndex]);
-
-  const handlePrev = () => {
-    setCurrentIndex((prev) => Math.max(prev - 1, 0));
-  };
-
-  const handleNext = () => {
-    setCurrentIndex((prev) => Math.min(prev + 1, maxIndex));
-  };
-
+  console.log(items);
+  
   return (
-    <div className="bg-white-50 px-2 py-5 text-slate-900 dark:bg-slate-950 dark:text-slate-50">
-      <div className="mx-auto max-w-6xl">
-        <div className="mb-3 flex items-end justify-between gap-4">
-          <div>
-            <p className="mb-2 text-sm font-medium uppercase tracking-wider text-amber-600">Informasi Mahasiswa</p>
-            <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">Keuangan & Layanan Pendukung</h1>
-            <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-600 dark:text-slate-300">
-              Tampilan modern berbasis Tailwind untuk menampilkan tiga kategori utama secara ringkas, rapi, dan mudah dipindai.
-            </p>
-          </div>
-        </div>
-
-        <div className="space-y-5">
+    <div className="space-y-5">
           <div className="flex items-center justify-between gap-4">
             <div className="flex gap-2">
               <button
@@ -117,7 +34,7 @@ export default function InformasiKeuanganMahasiswa() {
               className="flex gap-5 pt-6 transition-transform duration-500 ease-out"
               style={{ transform: `translateX(-${currentIndex * (100 / visibleCards)}%)` }}
             >
-              {items.map((item) => {
+              {items.map((item:any) => {
                 const Icon = item.icon;
                 return (
                   <div key={item.number} className="flex-none" style={{ width: `calc(${100 / visibleCards}% - 1.25rem)` }}>
@@ -159,7 +76,5 @@ export default function InformasiKeuanganMahasiswa() {
             ))}
           </div>
         </div>
-      </div>
-    </div>
-  );
+  )
 }

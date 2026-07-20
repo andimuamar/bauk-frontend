@@ -3,7 +3,7 @@ import ServicesGrid from "@/components/ServicesGrid";
 import PostList from "@/components/PostList";
 import CategoryList from "@/components/CategoryList";
 import Link from "next/link";
-import MahasiswaInfo from "@/components/MahasiswaInfo";
+import InformasiKeuanganMahasiswa from "./mahasiswa/page";
 
 export default function HomePage() {
   return (
@@ -12,7 +12,7 @@ export default function HomePage() {
 
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
         {/* <ServicesGrid /> */}
-        <MahasiswaInfo/>
+        <InformasiKeuanganMahasiswa/>
       </section>
 
       <section className="border-y border-slate-100 bg-brand-cream">
