@@ -60,7 +60,7 @@ export default async function BeritaArchivePage() {
         <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {posts.map((post) => {
             const thumbnail = getThumbnail(post);
-            console.log(post.id);
+            
             return (
               <article
                 key={post.id}

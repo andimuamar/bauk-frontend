@@ -91,15 +91,12 @@ export async function fetchPages(options: WPListOptions = {}): Promise<WPPage[]>
 export async function fetchPageBySlug(slug: string) {
   const url = `${WP_API_BASE}/pages?slug=${slug}`;
 
-  console.log(url);
 
   const res = await fetch(url, {
     cache: "no-store",
   });
 
   const pages = await res.json();
-
-  console.log(JSON.stringify(pages, null, 2));
 
   return pages[0];
 }
