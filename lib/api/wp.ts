@@ -35,6 +35,12 @@ interface WPListOptions {
   params?: Record<string, string>;
 }
 
+type FetchPostsOptions = {
+  perPage?: number;
+  page?: number;
+  params?: Record<string, string | number>;
+};
+
 function buildQuery({ perPage = 10, page = 1, params = {} }: WPListOptions) {
   const qs = new URLSearchParams({
     per_page: String(perPage),
@@ -45,7 +51,7 @@ function buildQuery({ perPage = 10, page = 1, params = {} }: WPListOptions) {
 }
 
 // lib/api/wp.ts
-export async function fetchPosts({ perPage = 10 }: { perPage?: number }) {
+export async function fetchPosts({ perPage = 10, page, params = {} }: FetchPostsOptions) {
   const res = await fetch(
     `https://bauk.uis.ac.id/wp-json/wp/v2/posts?per_page=${perPage}`,
     { next: { revalidate: 300 } }

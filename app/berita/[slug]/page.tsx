@@ -7,12 +7,15 @@ function stripHtml(html: string) {
   return html.replace(/<[^>]*>/g, "").trim();
 }
 
-interface PostPageProps {
-  params: { slug: string };
-}
+type PostPageProps = {
+  params: Promise<{
+    slug: string;
+  }>;
+};
 
 export async function generateMetadata({ params }: PostPageProps): Promise<Metadata> {
-  const post = await fetchPostBySlug(params.slug);
+  const { slug } = await params;
+  const post = await fetchPostBySlug(slug);
   if (!post) return {};
   return {
     title: stripHtml(post.title.rendered),
@@ -20,8 +23,9 @@ export async function generateMetadata({ params }: PostPageProps): Promise<Metad
   };
 }
 
-export default async function SinglePostPage({ params }: PostPageProps) {
-  const post = await fetchPostBySlug(params.slug);
+export default async function SinglePostPage({ params }: PostPageProps)  {
+  const { slug } = await params;
+  const post = await fetchPostBySlug(slug);
 
   if (!post) {
     notFound();

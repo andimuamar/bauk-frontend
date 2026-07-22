@@ -3,7 +3,6 @@ import { ArrowRight } from "lucide-react";
 
 export const SliderCategories = ({handlePrev, handleNext, currentIndex, maxIndex, setCurrentIndex, visibleCards, items} : {handlePrev:any, handleNext:any, currentIndex:any, maxIndex:number, setCurrentIndex:any, visibleCards:any, items:any}) => {
 
-
   
   return (
     <div className="space-y-5">
