@@ -12,7 +12,7 @@ export default function PostList({ perPage = 6 }: { perPage?: number }) {
   const [posts, setPosts] = useState<WPPost[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
-
+ 
   useEffect(() => {
     let cancelled = false;
 
