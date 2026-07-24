@@ -33,7 +33,7 @@ export default function HomePage() {
               Lihat semua &rarr;
             </Link>
           </div>
-          <PostList perPage={6} />
+          {/* <PostList perPage={6} /> */}
         </div>
       </section>
 
