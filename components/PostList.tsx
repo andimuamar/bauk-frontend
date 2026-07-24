@@ -77,7 +77,7 @@ export default function PostList({ perPage = 6 }: { perPage?: number }) {
             })}
           </time>
           <h3 className="mt-1 line-clamp-2 text-base font-semibold text-brand-navy">
-            <Link href={post.link} target="_blank" className="hover:underline">
+            <Link href={`/berita/${post.slug}`} className="hover:underline">
               {stripHtml(post.title.rendered)}
             </Link>
           </h3>

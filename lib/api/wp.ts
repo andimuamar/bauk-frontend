@@ -53,7 +53,7 @@ function buildQuery({ perPage = 10, page = 1, params = {} }: WPListOptions) {
 // lib/api/wp.ts
 export async function fetchPosts({ perPage = 10, page, params = {} }: FetchPostsOptions) {
   const res = await fetch(
-    `https://bauk.uis.ac.id/wp-json/wp/v2/posts?per_page=${perPage}`,
+    `https://bauk-api.uis.ac.id/wp-json/wp/v2/posts?per_page=${perPage}`,
     { next: { revalidate: 300 } }
   );
   if (!res.ok) throw new Error("Failed to fetch posts");
@@ -64,7 +64,7 @@ export async function fetchPosts({ perPage = 10, page, params = {} }: FetchPosts
 
   if (mediaIds.length > 0) {
     const mediaRes = await fetch(
-      `https://bauk.uis.ac.id/wp-json/wp/v2/media?include=${mediaIds.join(",")}&per_page=100`,
+      `https://bauk-api.uis.ac.id/wp-json/wp/v2/media?include=${mediaIds.join(",")}&per_page=100`,
       { next: { revalidate: 300 } }
     );
     if (mediaRes.ok) {
