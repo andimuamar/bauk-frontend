@@ -62,8 +62,7 @@ export default function CategoryList() {
       {categories.map((cat) => (
         <Link
           key={cat.id}
-          href={cat.link}
-          target="_blank"
+          href={`/category/${cat.slug}`}
           className="rounded-full border border-brand-navy/20 px-3 py-1 text-xs font-medium text-brand-navy transition-colors hover:border-brand-gold hover:bg-brand-gold/10"
         >
           {cat.name}

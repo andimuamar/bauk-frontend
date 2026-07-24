@@ -74,7 +74,8 @@ export const SliderCategories = ({
                     {item.title}
                   </h2>
                   <p className="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-300">
-                    {item.desc}
+                    {item.desc.slice(0, 100)}
+                    {item.desc.length > 100 && "..."}
                   </p>
 
                   <Link
